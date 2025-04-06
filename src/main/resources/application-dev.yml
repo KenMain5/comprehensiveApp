@@ -1,0 +1,28 @@
+#Database H2 Configurations
+spring:
+  datasource: #Nothing Here
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10
+        format_sql: tru
+        hbm2ddl:
+          auto: none
+    #Enables Spring to scan the sql file
+    defer-datasource-initialization: true
+  main:
+    allow-bean-definition-overriding: true
+
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+
+

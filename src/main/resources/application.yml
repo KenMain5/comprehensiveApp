@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: comprehensiveApplication
+
+  profiles:
+    active: ${RUNTIME_ENV:dev}
+    group:
+      dev: dev,dev-secrets
+
+custom:
+  target:
+    link: "https://www.usaajobs.com/location/san-antonio-jobs/1207/6252001-4736286-4726206/4"
+

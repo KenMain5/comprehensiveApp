@@ -1,0 +1,18 @@
+
+spring:
+  datasource: #Nothing Here
+    url: #URL Link
+    username: sa
+    password: dFs9NDTM1mL2PGFK
+    driver-class-name: org.h2.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 10
+        format_sql: tru
+        hbm2ddl:
+          auto: none
+  main:
+    allow-bean-definition-overriding: true

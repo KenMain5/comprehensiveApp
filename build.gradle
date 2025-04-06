@@ -1,0 +1,67 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.3'
+	id 'io.spring.dependency-management' version '1.1.7'
+
+}
+
+group = 'com.kenmeister'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+//Separates integration test into a separate source set
+sourceSets {
+	integrationTest {
+		java {
+			//compileClasspath is a file collection
+			//output is the source output
+			compileClasspath += main.output + test.output
+			runtimeClasspath += main.output + test.output
+			srcDirs = [file('src/integration-test/java')]
+
+		}
+		resources.srcDirs = [file('src/integration-test/resources')]
+	}
+}
+
+
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-groovy-templates'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// Jsoup for HTML parsing
+	implementation 'org.jsoup:jsoup:1.17.2'
+
+	//https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.2'
+
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'org.postgresql:postgresql'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

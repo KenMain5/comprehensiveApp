@@ -1,0 +1,11 @@
+package com.kenmeister.comprehensiveApplication.repository;
+
+import com.kenmeister.comprehensiveApplication.entity.JobTargetEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+@Repository
+@Transactional
+public interface JobTargetRepository extends JpaRepository<JobTargetEntity, Long> {
+}
